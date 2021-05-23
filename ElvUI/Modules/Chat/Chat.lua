@@ -554,6 +554,7 @@ function CH:CopyChat(frame)
 		local lineCt = CH:GetLines(frame:GetRegions())
 		local text = tconcat(copyLines, " \n", 1, lineCt)
 		FCF_SetChatWindowFontSize(frame, frame, fontSize)
+		CopyChatFrameEditBox:FontTemplate(LSM:Fetch("font", CH.db.font), fontSize, CH.db.fontOutline)
 		CopyChatFrameEditBox:SetText(text)
 	else
 		CopyChatFrame:Hide()
@@ -1349,7 +1350,7 @@ function CH:ChatFrame_MessageEventHandler(frame, event, arg1, arg2, arg3, arg4, 
 				end
 			end
 
-			
+
 			if notChatHistory and notMyName and not myCustomName and not CH.SoundTimer and (not CH.db.noAlertInCombat or not InCombatLockdown()) then
 				local channels = chatGroup ~= "WHISPER" and chatGroup or (chatType == "WHISPER" or chatType == "BN_WHISPER") and "WHISPER"
 				local alertType = CH.db.channelAlerts[channels]
